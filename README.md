@@ -1,2 +1,2 @@
 # JavaChatting
-git�׽�Ʈ
+git한글코딩
