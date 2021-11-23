@@ -1,2 +1,2 @@
 # JavaChatting
-git한글코딩ddd
+채팅 프로그램 미완
