@@ -1,11 +1,17 @@
 @charset "utf-8";
 
+div.di{
+	height:800px;
+	margin:auto;
+}
 table.type11 {
+	width:1000px;
+	height:60px;
   border-collapse: separate;
   border-spacing: 1px;
   text-align: center;
   line-height: 1.5;
-  margin: 20px 10px;
+  margin: auto;
 }
 table.type11 th {
   width: 155px;

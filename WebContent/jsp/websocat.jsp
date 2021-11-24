@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="catting.BoardDAO" %>
+<%@ page import="user.UserVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+
+/* String id =; */
+
+
+%>
 <fieldset>
         <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
         <br/>
@@ -15,6 +23,7 @@
     </fieldset>
 </body>
 <script type="text/javascript">
+
         var textarea = document.getElementById("messageWindow");
         var webSocket = new WebSocket('ws://localhost:8070/Javachatting/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
@@ -43,7 +52,7 @@
     }
 
     function send() {
-        textarea.value += "나 : " + inputMessage.value + "\n";
+        textarea.value += "나: " + inputMessage.value + "\n";
         webSocket.send(inputMessage.value);
         inputMessage.value = "";
     }
