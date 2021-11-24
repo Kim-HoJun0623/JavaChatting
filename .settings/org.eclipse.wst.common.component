@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
         
+<<<<<<< HEAD
     <wb-module deploy-name="Javachattion">
+=======
+    <wb-module deploy-name="Javachatting">
+>>>>>>> branch 'merge' of https://github.com/Kim-HoJun0623/JavaChatting.git
                 
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
                 
+<<<<<<< HEAD
         <property name="context-root" value="Javachattion"/>
                 
         <property name="java-output-path" value="/Javachattion/build/classes"/>
+=======
+        <property name="java-output-path" value="/Javachatting/build/classes"/>
+        <property name="context-root" value="Javachatting"/>
+>>>>>>> branch 'merge' of https://github.com/Kim-HoJun0623/JavaChatting.git
             
     </wb-module>
     
