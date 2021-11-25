@@ -20,6 +20,7 @@ public class Broadsocket {
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);
 		synchronized (clients) {
+			System.out.println("메세지출력");
 			// Iterate over the connected sessions
 			// and broadcast the received message
 			for (Session client : clients) {

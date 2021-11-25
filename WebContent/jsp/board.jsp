@@ -23,9 +23,14 @@
   </thead>
   <tbody>
   <%
+  			String user_id =(String) session.getAttribute("user_id");
 					BoardDAO boardDAO = new BoardDAO();
 				ArrayList<UserVO> list = boardDAO.friendlist();
 					for(int i=0; i<list.size(); i++){
+						if(session.getAttribute("user_id").equals(list.get(i).getId())){
+							
+							
+						}else{
 				%>
   			<tr>
  		
@@ -33,11 +38,12 @@
 			<td><%= list.get(i).getId() %></th>
     		<td><%= list.get(i).getName() %></th>
     		<td><%=list.get(i).getPhone1()+"-"+list.get(i).getPhone2()+"-"+list.get(i).getPhone3() %></th>
-			<td><a>메세지</a></th>
+			<td><a href="../jsp/websocat.jsp?id=<%=list.get(i).getId()%>">메세지</a></th>
 				 
 				
   </tr>
   	<%
+						}
 								}
 						%>
 
