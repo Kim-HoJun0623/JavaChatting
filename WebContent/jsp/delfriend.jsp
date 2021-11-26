@@ -17,12 +17,11 @@
 	String url = "jdbc:oracle:thin:@localhost:1521/XE";
 	String uid = "scott";
 	String upw = "tiger";
-	String rid = request.getParameter("rid");
+	String aid = request.getParameter("aid");
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	friendVO fvo = new friendVO();
-
 	
 	try
     {
@@ -30,15 +29,17 @@
           String dbUser = "scott";
           String dbPass = "tiger";
       
-        String query = "update friendrequest set dist = 1 where rfriend like ? and afriend like ?";
+        String query = "delete friendrequest where rfriend like ? and afriend like ? or rfriend like ? and afriend like ?";
           // 2. 데이터베이스 커넥션 생성
           conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
           // 3. Statement 생성
           pstmt = conn.prepareStatement(query);
-  		  pstmt.setString(1, rid);
+  		  pstmt.setString(1, aid);
   		  pstmt.setString(2, id);
-  		  response.sendRedirect("acfriend.jsp");
+  		  pstmt.setString(3, id);
+  		  pstmt.setString(4, aid);
+  		  response.sendRedirect("my.jsp");
           // 4. 쿼리 실행
           rs = pstmt.executeQuery();
 

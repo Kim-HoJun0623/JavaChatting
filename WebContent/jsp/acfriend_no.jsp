@@ -22,7 +22,6 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	friendVO fvo = new friendVO();
-
 	
 	try
     {
@@ -30,7 +29,7 @@
           String dbUser = "scott";
           String dbPass = "tiger";
       
-        String query = "update friendrequest set dist = 1 where rfriend like ? and afriend like ?";
+        String query = "delete friendrequest where rfriend like ? and afriend like ?";
           // 2. 데이터베이스 커넥션 생성
           conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 

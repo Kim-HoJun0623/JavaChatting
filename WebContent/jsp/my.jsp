@@ -18,6 +18,7 @@
 <%@ page import = "java.sql.ResultSet" %>
 <%@ page import = "java.sql.SQLException" %>
 <%@page import="java.sql.PreparedStatement"%>
+<%@page import="user.friendVO" %>
 
 <html>
 <head>
@@ -36,7 +37,8 @@
 	      (<%=id %>)의 친구 테이블의 내용
       <table width = "100%" border = "1">
       <tr>
-            <td>친구</td>
+            <td colspan="2">친구</td>
+            
       </tr>
  
 <%
@@ -52,6 +54,7 @@
             String jdbcDriver = "jdbc:oracle:thin:@localhost:1521/XE";
             String dbUser = "scott";
             String dbPass = "tiger";
+            friendVO fvo = new friendVO();
            // String query = "select * from friendrequest where rfriend like ? and dist = 1";
            // String query = "select * from friendrequest where (rfriend like ? and dist = 1) or (afriend like ? and dist = 1)";
            
@@ -73,6 +76,8 @@
 
         <tr>
           <td><%= rs.getString("afriend") %></td>
+          <%fvo.setAfriend(rs.getString("afriend"));%>
+          <td><a href="delfriend.jsp?aid=<%=fvo.getAfriend()%>">친구 삭제</a></td>
        </tr>
 <%
             }

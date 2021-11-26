@@ -16,6 +16,7 @@
 <%@ page import = "java.sql.ResultSet" %>
 <%@ page import = "java.sql.SQLException" %>
 <%@page import="java.sql.PreparedStatement"%>
+<%@ page import="user.friendVO"%>
 
 <%
 
@@ -25,6 +26,7 @@
 	String url = "jdbc:oracle:thin:@localhost:1521/XE";
 	String uid = "scott";
 	String upw = "tiger";
+	String aid = request.getParameter("aid");
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -41,7 +43,7 @@
 		// 3. pstmt 생성
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
-		pstmt.setString(2, fri_id);
+		pstmt.setString(2, aid);
 		pstmt.setInt(3,dist);
 
 		response.sendRedirect("refriend_success.jsp"); // 페이지이동
