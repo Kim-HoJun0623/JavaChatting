@@ -58,13 +58,15 @@ public class BoardDAO {
 		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다.
 		String sql="select indexid from chatting order by indexid desc";
 		try {
+			con = dataFactory.getConnection();
 			 pstmt=con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				System.out.println("번호부여");
+				System.out.println("@@@@@@@@@@번호부여"+rs.getInt(1)+1);
 				return rs.getInt(1)+1;
 			
 			}	
+			System.out.println("번호부여실패");
 			return 1;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -73,16 +75,21 @@ public class BoardDAO {
 	}
 	public void setMessage(String name,String message,String user_id,String id) {
 		String sql="insert into CHATTING values(?, ?, ?, ?, ?)";
+		//String sql="insert into test values(?)";
 		try {
 
 			 con = dataFactory.getConnection();
 			 pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, getNext());
+			 
+			pstmt.setInt(1, (Integer)getNext());
+			 //pstmt.setInt(1, 100);
+			System.out.println(getNext());
 			System.out.println(name);
-			pstmt.setString(2,"김호준");
-			pstmt.setString(3,"김호준");
-			pstmt.setString(4,"김호준");
-			pstmt.setString(5,"김호준");
+			
+			pstmt.setString(2,"kim");
+			pstmt.setString(3,"kim");
+			pstmt.setString(4,"kim");
+			pstmt.setString(5,"kim'");
 			System.out.println("데이터입력");
 			 pstmt.executeUpdate();
 		}catch(Exception e) {
