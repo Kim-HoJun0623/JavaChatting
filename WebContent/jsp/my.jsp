@@ -32,9 +32,10 @@
 <br>
 <br>
 	<a href="logout.jsp">로그아웃</a>&nbsp;&nbsp;
-	<a href="refriend.jsp">친구신청</a>&nbsp;&nbsp;
-	<a href="acfriend.jsp">친구 요청 대기 목록</a><br><br>
-	     
+	<a href="refriend.jsp" onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구신청</a>&nbsp;&nbsp;
+	<a href="acfriend.jsp" onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 요청 대기 목록</a><br><br>
+
+
       <table width = "60%" border = "1">
       <tr>
             <td colspan="3">친구</td>
@@ -78,7 +79,7 @@
           <td><%= rs.getString("afriend") %></td>
           <%fvo.setAfriend(rs.getString("afriend"));%>
           <td><a href="delfriend.jsp?aid=<%=fvo.getAfriend()%>">친구 삭제</a></td>
-          <td><a href="friendinfo.jsp?aid=<%=fvo.getAfriend()%>">친구 정보</a></td>
+          <td><a href="friendinfo.jsp?aid=<%=fvo.getAfriend()%>"  onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 정보</a></td>
        </tr>
 <%
             }

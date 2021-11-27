@@ -46,7 +46,7 @@
 		pstmt.setString(2, aid);
 		pstmt.setInt(3,dist);
 
-		response.sendRedirect("refriend_success.jsp"); // 페이지이동
+		response.sendRedirect("refriend.jsp"); // 페이지이동
 		// 4. sql문 실행
 		int result = pstmt.executeUpdate();
 		

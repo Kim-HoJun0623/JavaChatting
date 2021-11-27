@@ -86,7 +86,7 @@
 %>
       </table>
       <br><br><br>
-      <a href="my.jsp">내 정보로 이동</a>
+
 
 </body>
 </html>

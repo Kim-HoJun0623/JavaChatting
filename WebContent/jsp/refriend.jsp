@@ -25,7 +25,7 @@
 
       <table border = "1">
       <tr>
-            <td colspan="2">친구 목록</td>
+            <td colspan="2">유저 목록</td>
       </tr>
  
 <%

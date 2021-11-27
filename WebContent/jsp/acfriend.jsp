@@ -139,7 +139,7 @@
 %>
       </table>
             <br><br><br>
-      <a href="my.jsp">친구 목록으로 이동</a>
+
 
 </body>
 </html>
