@@ -1,17 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String id = (String)session.getAttribute("user_id");
-	String name = (String)session.getAttribute("user_name");
-	String phone1 = (String)session.getAttribute("user_phone1");
-	String phone2 = (String)session.getAttribute("user_phone2");
-	String phone3 = (String)session.getAttribute("user_phone3");
-%>
-
-
-
-
-<!DOCTYPE html>
+<%@ page contentType = "text/html; charset=euc-kr" %>
 <%@ page import = "java.sql.DriverManager" %>
 <%@ page import = "java.sql.Connection" %>
 <%@ page import = "java.sql.Statement" %>
@@ -19,32 +6,27 @@
 <%@ page import = "java.sql.SQLException" %>
 <%@page import="java.sql.PreparedStatement"%>
 
+
+ 
+<%
+	String id = (String)session.getAttribute("user_id");
+%>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<head><title>ȸ�� ���</title></head>
 <body>
-<h1>내 정보 페이지입니다.</h1>
-<%=id %>(<%=name %>)님 개인정보입니다. <br>
-핸드폰 번호 : <%=phone1%> - <%=phone2%> - <%=phone3%>
-<br>
-<br>
-	<a href="logout.jsp">로그아웃</a><br/>
-	
-	      (<%=id %>)의 친구 테이블의 내용
+      (<%=id %>)�� ģ�� ���̺��� ����
       <table width = "100%" border = "1">
       <tr>
-            <td>친구</td>
+            <td>ģ��</td>
       </tr>
  
 <%
-      // 1. JDBC 드라이버 로딩
+      // 1. JDBC ����̹� �ε�
      Class.forName("oracle.jdbc.driver.OracleDriver");
   
-      Connection conn = null; // DBMS와 Java연결객체
+      Connection conn = null; // DBMS�� Java���ᰴü
   	  PreparedStatement pstmt = null;
-      ResultSet rs = null; // SQL구문의 실행결과를 저장
+      ResultSet rs = null; // SQL������ �������� ����
   
       try
       {
@@ -55,17 +37,17 @@
            // String query = "select * from friendrequest where (rfriend like ? and dist = 1) or (afriend like ? and dist = 1)";
            
           String query = "select afriend from friendrequest where (rfriend like ? and dist = 1) union select rfriend from friendrequest where (afriend like ? and dist = 1)";
-            // 2. 데이터베이스 커넥션 생성
+            // 2. �����ͺ��̽� Ŀ�ؼ� ����
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
    
-            // 3. Statement 생성
+            // 3. Statement ����
             pstmt = conn.prepareStatement(query);
     		pstmt.setString(1, id);
     		pstmt.setString(2, id);
-            // 4. 쿼리 실행
+            // 4. ���� ����
             rs = pstmt.executeQuery();
    
-            // 5. 쿼리 실행 결과 출력
+            // 5. ���� ���� ��� ���
             while(rs.next())
             {
 %>
@@ -79,15 +61,14 @@
             out.println(ex.getMessage());
             ex.printStackTrace();
       }finally{
-            // 6. 사용한 Statement 종료
+            // 6. ����� Statement ����
             if(rs != null) try { rs.close(); } catch(SQLException ex) {}
             if(pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
    
-            // 7. 커넥션 종료
+            // 7. Ŀ�ؼ� ����
             if(conn != null) try { conn.close(); } catch(SQLException ex) {}
       }
 %>
       </table>
-	
 </body>
 </html>
