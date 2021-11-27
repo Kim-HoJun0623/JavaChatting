@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("user_id");
-	String name = (String)session.getAttribute("user_name");
-	String phone1 = (String)session.getAttribute("user_phone1");
-	String phone2 = (String)session.getAttribute("user_phone2");
-	String phone3 = (String)session.getAttribute("user_phone3");
 %>
 
 
@@ -19,54 +15,48 @@
 <%@ page import = "java.sql.SQLException" %>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="user.friendVO" %>
-
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1>내 정보 페이지입니다.</h1>
-<%=id %> (<%=name %>)님 개인정보입니다. <br>
-핸드폰 번호 : <%=phone1%> - <%=phone2%> - <%=phone3%>
-<br>
-<br>
-	<a href="logout.jsp">로그아웃</a>&nbsp;&nbsp;
-	<a href="refriend.jsp" onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구신청</a>&nbsp;&nbsp;
-	<a href="acfriend.jsp" onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 요청 대기 목록</a><br><br>
 
 
-      <table width = "60%" border = "1">
+ <table border = "1" style>
       <tr>
-            <td colspan="3">친구</td>
-            
+            <td>친구 ID</td>
+            <td>친구 이름</td>
+            <td>친구 전화번호</td>
       </tr>
  
 <%
+	 String aid = request.getParameter("aid");
       // 1. JDBC 드라이버 로딩
      Class.forName("oracle.jdbc.driver.OracleDriver");
   
       Connection conn = null; // DBMS와 Java연결객체
   	  PreparedStatement pstmt = null;
       ResultSet rs = null; // SQL구문의 실행결과를 저장
+      friendVO fvo = new friendVO();
   
       try
       {
             String jdbcDriver = "jdbc:oracle:thin:@localhost:1521/XE";
             String dbUser = "scott";
             String dbPass = "tiger";
-            friendVO fvo = new friendVO();
-           // String query = "select * from friendrequest where rfriend like ? and dist = 1";
-           // String query = "select * from friendrequest where (rfriend like ? and dist = 1) or (afriend like ? and dist = 1)";
+
            
-          String query = "select afriend from friendrequest where (rfriend like ? and dist = 1) union select rfriend from friendrequest where (afriend like ? and dist = 1)";
+          String query = "select * from chat_members where id like ?";
+         
+          
             // 2. 데이터베이스 커넥션 생성
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
    
             // 3. Statement 생성
             pstmt = conn.prepareStatement(query);
-    		pstmt.setString(1, id);
-    		pstmt.setString(2, id);
+    		pstmt.setString(1, aid);
+
             // 4. 쿼리 실행
             rs = pstmt.executeQuery();
    
@@ -76,10 +66,9 @@
 %>
 
         <tr>
-          <td><%= rs.getString("afriend") %></td>
-          <%fvo.setAfriend(rs.getString("afriend"));%>
-          <td><a href="delfriend.jsp?aid=<%=fvo.getAfriend()%>">친구 삭제</a></td>
-          <td><a href="friendinfo.jsp?aid=<%=fvo.getAfriend()%>"  onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 정보</a></td>
+          <td><%= rs.getString("id") %></td>
+          <td><%= rs.getString("name") %></td>
+          <td><%= rs.getString("phone1") %> - <%= rs.getString("phone2")%> - <%= rs.getString("phone3") %></td>
        </tr>
 <%
             }
@@ -96,6 +85,8 @@
       }
 %>
       </table>
-	
+      <br><br><br>
+
+
 </body>
 </html>
