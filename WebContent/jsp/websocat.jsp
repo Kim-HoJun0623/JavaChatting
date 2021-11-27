@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="catting.BoardDAO" %>
+<%@ page import="catting.BoardVO" %>
 <%@ page import="user.UserVO" %>
 <!DOCTYPE html>
 <html>
@@ -11,24 +12,34 @@
 </head>
 <body>
  <%
- String user_id =(String)  session.getAttribute("user_id"); //본인아이디
- String id = request.getParameter("id");//친구아이디
-	System.out.println(request.getParameter("id"));
-%> 
+ 
+  BoardDAO dao= new BoardDAO();
+
+String user_id = (String)session.getAttribute("user_id");
+String id2=request.getParameter("id2");
+String name = request.getParameter("name");
+BoardVO vo = dao.getMessge(user_id,id2);
+ 
+
+%>
+<input type="hidden" id="user_id" value='<%=user_id %>' />
+<input type="hidden" id="id2" value='<%=id2 %>' />
 <fieldset>
-        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
+		<input type="hidden" id="test">
+        <textarea id="messageWindow" rows="10" cols="50" readonly="true"><% if(vo.getContext()==null){%> 반가워요! <%}else{%><%= vo.getContext()%><%}%></textarea>
         <br/>
         <input id="inputMessage" type="text"/>
-        <input type="submit" value="send" id="message" onclick="send()" />
+        <input type="submit" value="send" onclick="send()" />
+        
+        <button><a id="message" href="../jsp/board.jsp">뒤로가기</a></button>
     </fieldset>
 </body>
-
-<script
+  <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
-
 <script type="text/javascript">
+		
         var textarea = document.getElementById("messageWindow");
         var webSocket = new WebSocket('ws://localhost:8070/Javachatting/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
@@ -41,16 +52,17 @@
     };
 
     webSocket.onmessage = function(event) {
-      onMessage(event,id)
+      onMessage(event)
     };
 
     function onMessage(event) {
-        textarea.value += "상대 : " + event.data + "\n";
+        textarea.value +=  $('#id2').val()+": "+event.data + "\n";
     }
 
     function onOpen(event) {
+    	 textarea.value +="\n"
     	
-        textarea.value += "연결 성공\n";
+       /*  textarea.value += "연결 성공\n"; */
     }
 
     function onError(event) {
@@ -58,8 +70,7 @@
     }
 
     function send() {
-    	
-        textarea.value += "나: " + inputMessage.value + "\n";
+        textarea.value += $('#user_id').val()+": " + inputMessage.value + "\n";
         webSocket.send(inputMessage.value);
         inputMessage.value = "";
 
@@ -72,7 +83,7 @@
     	$.ajax({
     		type:'post',
     		async:false,
-    		url:'../jsp/MessageCheck.jsp',
+    		url:'../jsp/MessageCheck.jsp?id2=<%= id2%>&name=<%= name%>',
     		dataType:'text',
     		data:{messageWindow:messageWindow},
     		success: function(data,textStatus){
@@ -87,7 +98,9 @@
     			console.log('error');
     		}
     		
-    	})	
+    	})
+		$(location).attr('href','../jsp/board.jsp');
     })
   </script>
+
 </html>
