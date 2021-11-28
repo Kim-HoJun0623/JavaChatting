@@ -24,12 +24,11 @@ BoardVO vo = dao.getMessge(user_id,id2);
 %>
 <input type="hidden" id="user_id" value='<%=user_id %>' />
 <input type="hidden" id="id2" value='<%=id2 %>' />
+
 <fieldset>
-		<input type="hidden" id="test">
-        <textarea id="messageWindow" rows="10" cols="50" readonly="true"><% if(vo.getContext()==null){%> 반가워요! <%}else{%><%= vo.getContext()%><%}%></textarea>
+        <textarea id="messageWindow" rows="10" cols="50" readonly="true"><% if(vo.getContext()==null){%> 반가워요! &#10 <%}else{%><%= vo.getContext()%><%}%></textarea>
         <br/>
         <input id="inputMessage" type="text" onkeyup="enterKey()"/>
-       <!--  <input type="submit" value="send" onclick="send()" /> -->
         <input type="hidden" onkeyup="enterKey"/>
         <button><a id="message" href="../jsp/websocat.jsp">뒤로가기</a></button>
     </fieldset>
@@ -60,7 +59,6 @@ BoardVO vo = dao.getMessge(user_id,id2);
     }
 
     function onOpen(event) {
-    	 textarea.value +="\n"
     	
        /*  textarea.value += "연결 성공\n"; */
     }
