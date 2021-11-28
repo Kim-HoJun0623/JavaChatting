@@ -17,15 +17,16 @@
 <%@page import="user.friendVO" %>
 <html>
 <head>
-<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../css/boardstyle.css" />
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 
-      <table border = "1">
+      <table border = "1" class="type11">
       <tr>
-            <td colspan="2">유저 목록</td>
+            <th colspan="2" scope="cols">유저 목록</th>
       </tr>
  
 <%

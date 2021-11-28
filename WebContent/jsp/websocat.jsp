@@ -28,10 +28,10 @@ BoardVO vo = dao.getMessge(user_id,id2);
 		<input type="hidden" id="test">
         <textarea id="messageWindow" rows="10" cols="50" readonly="true"><% if(vo.getContext()==null){%> 반가워요! <%}else{%><%= vo.getContext()%><%}%></textarea>
         <br/>
-        <input id="inputMessage" type="text"/>
-        <input type="submit" value="send" onclick="send()" />
-        
-        <button><a id="message" href="../jsp/board.jsp">뒤로가기</a></button>
+        <input id="inputMessage" type="text" onkeyup="enterKey()"/>
+       <!--  <input type="submit" value="send" onclick="send()" /> -->
+        <input type="hidden" onkeyup="enterKey"/>
+        <button><a id="message" href="../jsp/websocat.jsp">뒤로가기</a></button>
     </fieldset>
 </body>
   <script
@@ -69,11 +69,14 @@ BoardVO vo = dao.getMessge(user_id,id2);
       alert(event.data);
     }
 
-    function send() {
-        textarea.value += $('#user_id').val()+": " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
-        inputMessage.value = "";
+    function enterKey() {
+    	if(window.event.keyCode ==13){
+    		textarea.value += $('#user_id').val()+": " + inputMessage.value + "\n";
+            webSocket.send(inputMessage.value);
+            inputMessage.value = "";
 
+    	}
+        
     }
     $('#message').on("click",(e)=>{
     	const messageWindow=$('#messageWindow').val();
