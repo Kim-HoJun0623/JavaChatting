@@ -44,7 +44,7 @@
       <table class="type09">
 
       <tr>
-            <th colspan="3">친구</th> 
+            <th colspan="4">친구</th> 
 
       </tr>
 
