@@ -26,7 +26,7 @@ BoardVO vo = dao.getMessge(user_id,id2);
 <input type="hidden" id="id2" value='<%=id2 %>' />
 
 <fieldset>
-        <textarea id="messageWindow" rows="10" cols="50" readonly="true"><% if(vo.getContext()==null){%> 반가워요! &#10 <%}else{%><%= vo.getContext()%><%}%></textarea>
+        <textarea id="messageWindow" rows="10" cols="50" readonly="true"><% if(vo.getContext()==null){%>반가워요! &#10<%}else{%><%= vo.getContext()%><%}%></textarea>
         <br/>
         <input id="inputMessage" type="text" onkeyup="enterKey()"/>
         <input type="hidden" onkeyup="enterKey"/>
@@ -100,7 +100,7 @@ BoardVO vo = dao.getMessge(user_id,id2);
     		}
     		
     	})
-		$(location).attr('href','../jsp/board.jsp');
+		$(location).attr('href','../jsp/my.jsp');
     })
   </script>
 
