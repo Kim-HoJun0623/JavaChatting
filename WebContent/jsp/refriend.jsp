@@ -17,16 +17,20 @@
 <%@page import="user.friendVO" %>
 <html>
 <head>
+
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/hwanstyle.css">
+
 <title>Insert title here</title>
 </head>
 <body>
 
 
+
       <table class="type09">
       <tr>
             <th colspan="2">유저 목록</th>
+
       </tr>
  
 <%

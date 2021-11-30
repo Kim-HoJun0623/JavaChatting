@@ -1,7 +1,7 @@
 package catting;
 
 public class BoardVO {
-	int indexid;
+
 	String name;
 	String context;
 	String id,id2;
@@ -16,12 +16,6 @@ public class BoardVO {
 	}
 	public void setId2(String id2) {
 		this.id2 = id2;
-	}
-	public int getIndexid() {
-		return indexid;
-	}
-	public void setIndexid(int indexid) {
-		this.indexid = indexid;
 	}
 	public String getName() {
 		return name;

@@ -1,7 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter" %>
 <%@page import="catting.BoardDAO"%>
 <%@page import="catting.BoardVO"%>
 <!DOCTYPE html>
@@ -13,16 +12,19 @@
 </head>
 <body>
 	<%
+	
+
 		BoardDAO dao = new BoardDAO();
-	   	BoardVO vo = new BoardVO();
+	   	
+	    String user_id =(String)  session.getAttribute("user_id"); //본인아이디
+		 String id2 = request.getParameter("id2"); //친구아이디
+		 String name = request.getParameter("name");
+		 dao.ResetMessage(user_id, id2);//메세지 초기화
+		 
 		String message = request.getParameter("messageWindow");
-		PrintWriter ou = response.getWriter();
 		System.out.println("메세지받기완료");
-		ou.print(message);
-		String user_id="jun";//내아이디
-		String id="ho";//상대아이디
-		String name="hojun";
-		dao.setMessage(name, message, user_id, id);
+		
+		dao.setMessage(name, message, user_id, id2);//메세지 다시저장
 		
 	%>
 </body>

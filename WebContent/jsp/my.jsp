@@ -12,6 +12,8 @@
 
 
 <!DOCTYPE html>
+ <%@ page import="catting.BoardDAO" %>
+<%@ page import="user.UserVO" %>
 <%@ page import = "java.sql.DriverManager" %>
 <%@ page import = "java.sql.Connection" %>
 <%@ page import = "java.sql.Statement" %>
@@ -25,6 +27,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../css/hwanstyle.css">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/boardstyle.css" />
 </head>
 <body>
 
@@ -34,17 +37,19 @@
 <br>
 <br>
 	<a href="logout.jsp">로그아웃</a>&nbsp;&nbsp;
-	<a href="refriend.jsp" onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구신청</a>&nbsp;&nbsp;
-	<a href="acfriend.jsp" onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 요청 대기 목록</a><br><br>
+	<a href="refriend.jsp" onclick="window.open(this.href, '_blank', 'width=1000px,height=500px,toolbars=no,scrollbars=no'); return false;">친구신청</a>&nbsp;&nbsp;
+	<a href="acfriend.jsp" onclick="window.open(this.href, '_blank', 'width=1000px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 요청 대기 목록</a><br><br>
 
 
       <table class="type09">
 
       <tr>
             <th colspan="3">친구</th> 
+
       </tr>
 
 <%
+		UserVO uv = new UserVO();
       // 1. JDBC 드라이버 로딩
      Class.forName("oracle.jdbc.driver.OracleDriver");
   
@@ -69,19 +74,25 @@
             pstmt = conn.prepareStatement(query);
     		pstmt.setString(1, id);
     		pstmt.setString(2, id);
+    		
             // 4. 쿼리 실행
             rs = pstmt.executeQuery();
-   
+   		
             // 5. 쿼리 실행 결과 출력
             while(rs.next())
             {
+             	uv.setId((rs.getString(1)));
+                if(uv.getId().equals(id)){
+                	uv.setId(rs.getString(2));
+                } 
 %>
 
         <tr>
           <td><%= rs.getString("afriend") %></td>
           <%fvo.setAfriend(rs.getString("afriend"));%>
           <td><a href="delfriend.jsp?aid=<%=fvo.getAfriend()%>">친구 삭제</a></td>
-          <td><a href="friendinfo.jsp?aid=<%=fvo.getAfriend()%>"  onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 정보</a></td>
+          <td><a href="friendinfo.jsp?aid=<%=fvo.getAfriend()%>"  onclick="window.open(this.href, '_blank', 'width=1000px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 정보</a></td>
+		 <td><a href="../jsp/websocat.jsp?user_id=<%=id%>&id2=<%=uv.getId()%>&name=<%=name%>">메세지</a></th>
        </tr>
 <%
             }
