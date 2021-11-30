@@ -1,0 +1,37 @@
+table.type09 {
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 1.5;
+
+}
+table.type09 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: black;
+  border-bottom: 3px solid #036;
+  font-size: 20px;
+}
+table.type09 th {
+  width: 100px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 3px solid #ccc;
+  background: #f3f6f7;
+}
+table.type09 td {
+  width: 200px;
+  font-weight: bold;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+table.type10 td {
+  width: 310px;
+  font-weight: bold;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}

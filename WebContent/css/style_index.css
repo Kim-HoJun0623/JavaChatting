@@ -46,6 +46,6 @@
 .conB_small_container:hover { transform: scale(1.2); } 
 .conB_small_container .conB_icon { text-align: center; margin-bottom: 30px; } 
 .conB_small_container .conB_content { text-align: center; } 
-.conB_small_container .icon { display: inline-block; font-size: 40px; width: 100px; line-height: 100px; border-radius: 50%; background-color: rgba(77, 165, 124, 1); color: rgba(255, 255, 255, 1); }
+.conB_small_container .icon { display: inline-block; font-size: 40px; width: 100px;height:100px; line-height: 100px; border-radius: 50%; background-color: rgba(77, 165, 124, 1); color: rgba(255, 255, 255, 1); }
 .conB_small_container h3 { font-size: 25px; margin-bottom: 10px; } 
 .conB_small_container p { font-size: 15px; }
