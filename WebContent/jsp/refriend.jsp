@@ -18,14 +18,15 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="../css/hwanstyle.css">
 <title>Insert title here</title>
 </head>
 <body>
 
 
-      <table border = "1">
+      <table class="type09">
       <tr>
-            <td colspan="2">유저 목록</td>
+            <th colspan="2">유저 목록</th>
       </tr>
  
 <%
