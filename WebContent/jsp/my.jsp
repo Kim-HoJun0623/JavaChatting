@@ -25,10 +25,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../css/hwanstyle.css">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/boardstyle.css" />
 </head>
 <body>
+
 <h1>내 정보 페이지입니다.</h1>
 <%=id %> (<%=name %>)님 개인정보입니다. <br>
 핸드폰 번호 : <%=phone1%> - <%=phone2%> - <%=phone3%>
@@ -39,12 +41,13 @@
 	<a href="acfriend.jsp" onclick="window.open(this.href, '_blank', 'width=1000px,height=500px,toolbars=no,scrollbars=no'); return false;">친구 요청 대기 목록</a><br><br>
 
 
-      <table width = "60%" border = "1" class="type11">
+      <table class="type09">
+
       <tr>
-            <th colspan="4" scope="cols" >친구</th>
-            
+            <th colspan="3">친구</th> 
+
       </tr>
- 
+
 <%
 		UserVO uv = new UserVO();
       // 1. JDBC 드라이버 로딩

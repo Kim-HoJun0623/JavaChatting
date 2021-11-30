@@ -17,18 +17,21 @@
 <%@page import="user.friendVO" %>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/boardstyle.css" />
+
+<link rel="stylesheet" href="../css/hwanstyle.css">
+
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 
- <table border = "1" class="type11">
+ <table class="type09">
       <tr>
-            <th scope="cols">친구 ID</th>
-            <th scope="cols">친구 이름</th>
-            <th scope="cols">친구 전화번호</th>
+            <th>친구 ID</th>
+            <th>친구 이름</th>
+            <th>친구 전화번호</th>
+
       </tr>
  
 <%

@@ -17,16 +17,21 @@
 <%@page import="user.friendVO" %>
 <html>
 <head>
+
+<link rel="stylesheet" href="../css/hwanstyle.css">
 <link rel="stylesheet" type="text/css" href="../css/boardstyle.css" />
+
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
-친구 요청 대기 목록
 
- <table border = "1" class="type11">
+
+
+ <table class="type09">
       <tr>
-            <th colspan="3" scope="cols">나에게 친구 요청을 보낸 친구</th>
+            <th colspan="3">나에게 친구 요청을 보낸 친구</th>
+
       </tr>
  
 <%
@@ -86,7 +91,9 @@
 %>
       </table>
       <br><br><br>
-       <table border = "1" class="type11">
+
+       <table class="type09 type10">
+
       <tr>
             <th colspan="3">내가 친구 요청을 보낸 친구</th>
       </tr>
